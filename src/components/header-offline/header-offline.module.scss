@@ -1,0 +1,27 @@
+.header {
+  width: 100%;
+  padding: 2em;
+  display: flex;
+  justify-content: space-between;
+
+  svg {
+    width: 9.25rem;
+    height: 2.5rem;
+    fill: red;
+  }
+
+  button {
+    padding: 5px;
+    border: none;
+    border-radius: 4px;
+    background-color: #e50914;
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+
+    &:hover {
+      background-color: #b90c15;
+    }
+  }
+}

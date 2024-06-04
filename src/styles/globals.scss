@@ -1,0 +1,50 @@
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  font-family: Netflix Sans, Helvetica Neue, Segoe UI, Roboto, Ubuntu,
+    sans-serif;
+  background: #141414;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.css-15ez513-MuiPaper-root-MuiPopover-paper-MuiMenu-paper {
+  background-color: rgba(0, 0, 0, 0.9) !important;
+  color: white !important;
+}
+
+.css-cveggr-MuiListItemIcon-root {
+  color: white !important;
+}
+
+.slick-slider .slick-track,
+.slick-slider .slick-list {
+  height: 150px !important;
+}
+
+.slick-slide {
+  margin-right: 20px;
+
+  cursor: pointer;
+}
+
+.slick-next {
+  right: 0 !important;
+}
+
+.slick-prev {
+  left: 0 !important;
+  z-index: 200 !important;
+}
+
+.slick-prev.slick-disabled:before,
+.slick-next.slick-disabled:before {
+  opacity: 1 !important ;
+}

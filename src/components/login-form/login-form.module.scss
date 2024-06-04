@@ -1,0 +1,81 @@
+.loginForm {
+  width: 100%;
+  max-width: 450px;
+  margin: 0 auto;
+  border-radius: 4px;
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 48px 68px;
+  color: white;
+  height: 750px;
+
+  a:hover {
+text-decoration: underline;
+  }
+
+  h1 {
+    margin-bottom: 1em;
+  }
+
+  &_form {
+    display: flex;
+    flex-direction: column;
+
+    input {
+      padding: 16px;
+      border: 1px solid#999;
+      border-radius: 4px;
+      background-color: rgba(0, 0, 0, 0.5);
+      color: #fff;
+      margin-bottom: 16px;
+      font-size: 16px;
+
+      &::placeholder {
+        color: #999;
+        transition: 0.5s;
+        font-size: 1em;
+      }
+
+      &:focus {
+        outline: none;
+        box-shadow: 0 0 0 2px rgba(229, 9, 20, 0.8);
+      }
+
+      &:focus,
+      &:active:focus {
+        color: #405956;
+        outline: none;
+        border-bottom: 1px solid #405956;
+        &::placeholder {
+          color: #405956;
+          position: relative;
+          transform: translateY(-10px);
+        }
+      }
+    }
+
+    button {
+      padding: 16px;
+      border: none;
+      border-radius: 4px;
+      background-color: #e50914;
+      color: #fff;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background-color 0.2s ease;
+
+      &:hover {
+        background-color: #b90c15;
+      }
+    }
+
+
+  }
+}
+
+@media (max-width: 600px) {
+  .loginForm {
+    padding: 24px 24px;
+    height: 100%;
+    background: none;
+  }
+}
