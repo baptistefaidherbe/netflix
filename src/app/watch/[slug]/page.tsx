@@ -11,9 +11,11 @@ export default function Watch({ params }: { params: { slug: string } }) {
   if (isFetching) {
     return <div>Loading...</div>;
   }
+
+console.log(data)
   return (
     <div>
-      <VideoPlayer src={`/video/${data.movie.Video}`} />
+      <VideoPlayer src={`/video/${data[0].Video}`} />
     </div>
   );
 }

@@ -7,7 +7,11 @@ const nextConfig = {
         hostname: 'images-na.ssl-images-amazon.com',
         pathname: '**',
       },
-     
+      {
+        protocol: 'https',
+        hostname: 'www.francetvpro.fr',
+        pathname: '**',
+      },
     ],
   },
 };

@@ -3,7 +3,13 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
-import { Card, CardMedia, Typography, Box, CardActionArea } from '@mui/material';
+import {
+  Card,
+  CardMedia,
+  Typography,
+  Box,
+  CardActionArea,
+} from '@mui/material';
 import { log } from 'console';
 
 type CarouselProps = {
@@ -63,10 +69,9 @@ const Carousel = ({
   setHoveredIndex,
   setShowModal,
   category,
-  setHoveredCategory
+  setHoveredCategory,
 }: CarouselProps) => {
   const matchData = data.filter((show: any) => show.Genre.includes(category));
-  console.log('ici', matchData);
 
   const handleMouseEnter = (index: number) => {
     setHoveredIndex(index);
@@ -97,7 +102,6 @@ const Carousel = ({
       />
     );
   };
-
 
   return (
     <>

@@ -23,126 +23,35 @@
   top: 800px;
 }
 
-.modalContent {
-  width: 100%;
-  position: relative;
-  border-radius: 10px;
-  margin-top: 20px;
-
-  &_bg {
-    position: relative;
-
-    img {
-      border-top-left-radius: 10px;
-      border-top-right-radius: 10px;
-    }
-
-    &_wrapper {
-      position: absolute;
-      bottom: 100px;
-      padding: 20px;
-
-      h2 {
-        font-size: 3em;
-        margin-bottom: 10px;
-      }
-
-      &_button {
-        display: flex;
-
-        &_play {
-          background-color: rgba(109, 109, 110);
-          color: #fff;
-          font-size: 20px;
-          font-weight: bold;
-          padding: 5px 15px;
-          border: none;
-          border-radius: 5px;
-          cursor: pointer;
-          transition: background-color 0.3s ease;
-          margin-left: 10px;
-          display: flex;
-          align-items: center;
-
-          &:hover {
-            background-color: white !important;
-          }
-
-          svg {
-            padding-right: 10px;
-            width: 40px;
-            height: 30px;
-          }
-        }
-
-        &_add,
-        &_like {
-          border-radius: 50%;
-          padding: 8px;
-          background-color: transparent;
-          margin: 0 10px;
-          border: none;
-
-          svg {
-            width: 25px;
-            height: 25px;
-            color: white;
-          }
-        }
-      }
-    }
-  }
-
-  &_info {
-    padding: 20px;
-    margin-top: 30px;
-    display: flex;
-
-    &_colLeft {
-      span {
-        font-size: 20px;
-        margin-right: 15px;
-      }
-
-      p {
-        margin-top: 30px;
-      }
-    }
-
-    &_colRight {
-      p {
-        margin-bottom: 20px;
-      }
-    }
-
-    span {
-      color: grey;
-    }
-  }
-}
-
-
 @media screen and (max-width: 900px) {
   .home {
     &_carousel {
-      padding: 10px;
+      padding: 0;
     }
   }
 
-  .modalContent {
-    &_bg {
-      img {
-        height: 300px;
-      }
-
-      &_wrapper {
-        bottom: 50px;
-      }
-    }
-
-    &_info {
-      flex-direction: column;
-    }
+  .wrapper {
+    top: 400px;
   }
   
+}
+
+@media screen and (max-width: 600px) {
+  .wrapper {
+    top: 280px;
+  }
+  
+}
+
+@media screen and (max-width: 400px) {
+  .wrapper {
+    top: 220px;
+  }
+  
+}
+
+@media screen and (max-width: 300px){
+  .wrapper {
+    top: 200px;
+  }
 }

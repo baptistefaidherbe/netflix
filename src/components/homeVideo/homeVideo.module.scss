@@ -15,7 +15,7 @@
     z-index: 5;
     left: 100px;
     top: 30%;
-    width: 30%;
+    width: 500px;
 
     h1 {
       font-size: 5em;
@@ -51,5 +51,68 @@
 
   .moreInfoButton:hover {
     background-color: rgba(137, 137, 138, 0.7);
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .videoContainer {
+    video {
+      height: 500px;
+    }
+
+    &_wrapper {
+      left: 0;
+      width: 100%;
+      text-align: center;
+      top: 10%;
+
+      h1 {
+        font-size: 3em;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .videoContainer {
+    video {
+      height: 300px;
+    }
+
+    &_wrapper {
+      h1 {
+        font-size: 2em;
+      }
+
+      .moreInfoButton {
+        padding: 10px 30px;
+        font-size: 16px;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .videoContainer {
+    video {
+      height: 200px;
+    }
+
+    &_wrapper {
+      h1 {
+        font-size: 1.5em;
+      }
+
+      p {
+        display: none;
+      }
+    }
+
+    .moreInfoButton {
+      margin-right: 0;
+      margin-bottom: 10px;
+      font-size: 14px;
+      width: 90%;
+    }
   }
 }

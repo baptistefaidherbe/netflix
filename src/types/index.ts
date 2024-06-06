@@ -28,4 +28,5 @@ interface CartItem {
   Type: string;
   Response: string;
   Images: string[];
+  isRead: boolean;
 }

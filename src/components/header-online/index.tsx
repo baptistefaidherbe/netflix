@@ -60,12 +60,14 @@ export default function HeaderOnline() {
           </Badge>
         </Link>
         <div className={styles.icons_avatar}>
+          <div className={styles.icons_avatar_img}>
           <Image
             src='/img/avatar.png'
-            width={40}
-            height={40}
+            style={{ objectFit: 'cover' }}
+            fill
             alt='avatar.png'
           />
+          </div>
           <div className={styles.dropdown}>
             <Link href='/profile' className={styles.dropdownItem}>
               Profile

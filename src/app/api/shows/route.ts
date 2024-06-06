@@ -1,4 +1,3 @@
-import movies from '@/data/db.json';
 import { dbConnect, dbDisconnect } from '@/lib/database';
 import { NextRequest, NextResponse } from 'next/server';
 import ShowsSchema from '@/models/shows-schema';

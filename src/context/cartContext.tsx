@@ -11,8 +11,7 @@ const initialState: CartItem[] = [];
 type CartAction =
   | { type: 'ADD_ITEM'; item: CartItem }
   | { type: 'RESTORE_CART'; cart: CartItem[] }
-  | { type: 'REMOVE'; index: number }
-  | { type: 'VALIDATION_PAYMENT'; cart: CartItem[] };
+  | { type: 'REMOVE'; index: number };
 
 type CartContextType = {
   cart: CartItem[];
@@ -34,29 +33,6 @@ export const CartProvider: React.FC<CartProviderProps> = ({ children }) => {
           return updatedCart;
         case 'RESTORE_CART':
           return action.cart;
-        case 'VALIDATION_PAYMENT':
-          const idsToUpdate = state.map((item, index) => action.cart[index].Id);
-          const updateData = { isRead: true };
-
-          fetch('http://localhost:3000/api/shows', {
-            method: 'PUT',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ ids: idsToUpdate, updateData }),
-          });
-
-          const updatedCartSuccess = state.map((item, index) => {
-            if (item.Id === action.cart[index].Id) {
-              return {
-                ...item,
-                isRead: true,
-              };
-            }
-            return item;
-          });
-
-          return updatedCartSuccess;
         case 'REMOVE':
           const data = state.filter((_, index) => index !== action.index);
           localStorage.setItem('cart', JSON.stringify(data));
