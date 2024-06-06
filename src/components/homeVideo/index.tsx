@@ -23,7 +23,7 @@ const VideoComponent = ({
         <p>{show.Plot}</p>
         <div className={styles.videoContainer_wrapper_btn}>
           {isVideoAccessible ? (
-            <Link href={`/watch/${show.Id}`}>
+            <Link href={{ pathname: `/watch/${show.Id}`, query: { isVideoAccessible } }}>
               <button className={styles.moreInfoButton}>Lecture</button>
             </Link>
           ) : (

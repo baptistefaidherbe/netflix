@@ -69,12 +69,12 @@ export default function HeaderOnline() {
           />
           </div>
           <div className={styles.dropdown}>
-            <Link href='/profile' className={styles.dropdownItem}>
+            {/* <Link href='/profile' className={styles.dropdownItem}>
               Profile
             </Link>
             <Link href='/settings' className={styles.dropdownItem}>
               Settings
-            </Link>
+            </Link> */}
             <div onClick={handlerLogout} className={styles.dropdownItem}>
               Se déconnecter
             </div>
