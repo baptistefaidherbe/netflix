@@ -6,40 +6,37 @@ import styles from './success.module.scss';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import HeaderOnline from '@/components/header-online';
 import Link from 'next/link';
-import { useSession } from 'next-auth/react';
 import { useCart } from '@/context/cartContext';
+import { useRequireAuth } from '@/hooks/useRequiredAuth';
 
 export default function Success() {
-  const { data: session } = useSession();
-  const cartContext = useCart();
-
-  const { dispatch } = cartContext || {};
+  const { session } = useRequireAuth();
+  const { dispatch } = useCart() || {};
 
   useEffect(() => {
-    if (!session?.user?.email) {
-      return;
-    }
+    const fetchCartAndProcess = async () => {
+      if (!session?.user?.email || !dispatch) return;
 
-    const updateShow = async (videoIds: string[], userId: string) => {
-      try {
-        await axios.post('/api/purchase', { videoIds, userId });
-      } catch (error) {
-        console.error('Error updating shows:', error);
-      } finally {
-        localStorage.removeItem('cart');
-        if (dispatch) {
+      const storedCart = localStorage.getItem('cart');
+      if (storedCart) {
+        const parsedCart = JSON.parse(storedCart);
+        const videoIds = parsedCart.map((item: CartItem) => item.Id);
+
+        try {
+          await axios.post('/api/purchase', {
+            videoIds,
+            userId: session.user.email,
+          });
+          localStorage.removeItem('cart');
           dispatch({ type: 'RESTORE_CART', cart: [] });
+        } catch (error) {
+          console.error('Error updating shows:', error);
         }
       }
     };
 
-    const storedCart = localStorage.getItem('cart');
-    if (storedCart) {
-      const parsedCart = JSON.parse(storedCart);
-      const videoIds = parsedCart.map((item: CartItem) => item.Id);
-      updateShow(videoIds, session.user.email);
-    }
-  }, [session, dispatch, cartContext]);
+    fetchCartAndProcess();
+  }, [session, dispatch]);
 
   return (
     <div className={styles.success}>

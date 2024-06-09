@@ -28,9 +28,7 @@ const Modal = ({
             </button>
             <div className={styles.modalContent}>
               <div className={styles.modalContent_bg}>
-                <div
-                 className={styles.modalContent_bg_img}
-                >
+                <div className={styles.modalContent_bg_img}>
                   <Image
                     src={itemFilter.Images[0]}
                     alt='avatar.png'
@@ -42,7 +40,12 @@ const Modal = ({
                   <h2>{itemFilter.Title}</h2>
                   <div className={styles.modalContent_bg_wrapper_button}>
                     {isVideoAccessible ? (
-                      <Link href={`/watch/${itemFilter.Id}`}>
+                      <Link
+                        href={{
+                          pathname: `/watch/${itemFilter.Id}`,
+                          query: { isVideoAccessible },
+                        }}
+                      >
                         <button
                           className={styles.modalContent_bg_wrapper_button_play}
                         >

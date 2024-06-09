@@ -10,7 +10,6 @@ import {
   Box,
   CardActionArea,
 } from '@mui/material';
-import { log } from 'console';
 
 type CarouselProps = {
   data: any;

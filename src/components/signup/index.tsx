@@ -12,13 +12,11 @@ const Error = dynamic(() => import('@/components/error/index'), {
 
 export default function SignUp() {
   const router = useRouter();
-
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<FormValues>();
-
   const [error, setError] = useState('');
   const { mutate, isLoading } = useSignUp();
 

@@ -12,7 +12,7 @@ const useIsVideoAccessible = (
   useEffect(() => {
     if (data && data.purchases.length > 0) {
       data.purchases.filter(
-        (purchase: { videoId: string; purchaseTime: Date }) => {
+        (purchase: { userId: string; videoId: string; purchaseTime: Date }) => {
           purchase.videoId === itemFilter.Id.toString() &&
             isAccessValid(purchase.purchaseTime) &&
             setIsVideoAccessible(true);

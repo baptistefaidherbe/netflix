@@ -6,12 +6,17 @@ const VideoComponent = ({
   session,
   show,
   addToCart,
+  setShowModal,
+  setHoveredCategory,
 }: {
   show: CartItem;
   session: string;
   addToCart: (item: any) => void;
+  setShowModal: (show: boolean) => void;
+  setHoveredCategory: (category: string) => void;
 }) => {
   const isVideoAccessible = useIsVideoAccessible(session, show);
+
   return (
     <div className={styles.videoContainer}>
       <video autoPlay muted loop>
@@ -23,7 +28,12 @@ const VideoComponent = ({
         <p>{show.Plot}</p>
         <div className={styles.videoContainer_wrapper_btn}>
           {isVideoAccessible ? (
-            <Link href={{ pathname: `/watch/${show.Id}`, query: { isVideoAccessible } }}>
+            <Link
+              href={{
+                pathname: `/watch/${show.Id}`,
+                query: { isVideoAccessible },
+              }}
+            >
               <button className={styles.moreInfoButton}>Lecture</button>
             </Link>
           ) : (
@@ -34,7 +44,15 @@ const VideoComponent = ({
               Ajouter au panier
             </button>
           )}
-          <button className={styles.moreInfoButton}>Plus d&apos;infos</button>
+          <button
+            onClick={() => {
+              setShowModal(true);
+              setHoveredCategory('');
+            }}
+            className={styles.moreInfoButton}
+          >
+            Plus d&apos;infos
+          </button>
         </div>
       </div>
     </div>

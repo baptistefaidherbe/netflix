@@ -31,7 +31,7 @@ export default function HeaderOnline() {
   const { cart } = cartContext;
 
   const handlerLogout = () => {
-    signOut({ callbackUrl: '/login', redirect: true });
+    signOut({ callbackUrl: 'https://netflix.baptistefaidherbe.fr/login', redirect: true });
   };
   return (
     <header className={`${styles.header} ${isScrolled ? styles.scrolled : ''}`}>

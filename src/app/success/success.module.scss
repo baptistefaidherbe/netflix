@@ -19,8 +19,8 @@
       color: green;
     }
 
-    span{
-        margin: 10px;
+    span {
+      margin: 10px;
     }
 
     button {
@@ -43,3 +43,21 @@
     }
   }
 }
+
+@media screen and (max-width: 1024px) {
+  .success_wrapper {
+    width: 50%;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .success_wrapper {
+    width: 80%;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .success_wrapper {
+    width: 90%;
+  }
+} 

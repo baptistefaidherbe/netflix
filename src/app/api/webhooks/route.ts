@@ -30,8 +30,6 @@ export async function POST(req: Request) {
   if (eventType === 'checkout.session.completed') {
     const session = stripeEvent.data.object;
 
- 
-
     console.log('Checkout session completed:', session.id);
   }
 

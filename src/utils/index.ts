@@ -10,7 +10,7 @@ export const filteredData = (
 export const isAccessValid = (purchaseTime: Date) => {
   const currentTime = new Date().getTime();
   const purchaseTimestamp = new Date(purchaseTime).getTime();
-  const accessPeriod = 5 * 60 * 1000; // 5minutes
+  const accessPeriod = 10 * 60 * 1000; // 5minutes
 
   return currentTime - purchaseTimestamp < accessPeriod;
 };

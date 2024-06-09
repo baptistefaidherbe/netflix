@@ -1,55 +1,31 @@
 'use client';
-import { useSession } from 'next-auth/react';
-import { useRouter } from 'next/navigation';
+
 import HeaderOnline from '@/components/header-online';
 import styles from './home.module.scss';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useFetchShows } from '@/hooks/useFetchShow';
 import Carousel from '@/components/ui/carousel';
 import Modal from '@/components/ui/modal';
 import VideoComponent from '@/components/homeVideo';
-import { useCart } from '@/context/cartContext';
 import { filteredData } from '@/utils';
 import { motion } from 'framer-motion';
+import { useAddToCart } from '@/hooks/useAddToCard';
+import { useRequireAuth } from '@/hooks/useRequiredAuth';
 
 export default function Home() {
-  const { data: session, status } = useSession();
   const [hoveredIndex, setHoveredIndex] = useState<number>(0);
   const [hoveredCategory, setHoveredCategory] = useState<string>('');
-  const router = useRouter();
-  const { data, isFetching } = useFetchShows();
   const [showModal, setShowModal] = useState(false);
+  const { data, isFetching } = useFetchShows();
+  const {session, status} = useRequireAuth();
 
-  const cartContext = useCart();
-
-  useEffect(() => {
-    if (status === 'unauthenticated') {
-      router.push('/login');
-    }
-  }, [status, router]);
-
-  if (!cartContext) {
-    return null;
-  }
-
-  const { cart, dispatch } = cartContext;
-
-  const addToCart = (product: any) => {
-  
-    const isAlreadyInCart = cart.some(
-      (item: { Title: string }) => item.Title === product.Title
-    );
-
-    if (!isAlreadyInCart) {
-      dispatch({ type: 'ADD_ITEM', item: product });
-    }
-  };
+  const addToCart = useAddToCart();
 
   if (status === 'loading' && isFetching) {
     return <div>Loading...</div>;
   }
 
-  const category = [
+  const CATEGORY = [
     'Action',
     'Adventure',
     'Drama',
@@ -59,12 +35,15 @@ export default function Home() {
     'Drama',
   ];
 
-  const itemFilter = hoveredCategory
-    ? filteredData(data || [], hoveredCategory, hoveredIndex)
-    : null;
+  const itemFilter =
+    hoveredCategory !== ''
+      ? filteredData(data || [], hoveredCategory, hoveredIndex)
+      : data
+      ? data[0]
+      : null;
 
-  if (status === 'authenticated') {
-    return (
+  return (
+    status === 'authenticated' && (
       <motion.div
         initial={{ opacity: 0, scale: 0.9 }}
         animate={{ opacity: 1, scale: 1 }}
@@ -75,9 +54,15 @@ export default function Home() {
           <HeaderOnline />
           {data && data.length > 0 && (
             <>
-              <VideoComponent addToCart={addToCart} session={session?.user?.email ?? ''} show={data[0]} />
+              <VideoComponent
+                setHoveredCategory={setHoveredCategory}
+                setShowModal={setShowModal}
+                addToCart={addToCart}
+                session={session?.user?.email ?? ''}
+                show={data[0]}
+              />
               <div className={styles.wrapper}>
-                {category.map((cat, index) => (
+                {CATEGORY.map((cat, index) => (
                   <div key={index} className={styles.home_carousel}>
                     <h3>Catégorie {cat}</h3>
                     <Carousel
@@ -103,6 +88,6 @@ export default function Home() {
           )}
         </main>
       </motion.div>
-    );
-  }
+    )
+  );
 }
